@@ -41,6 +41,24 @@ Key files:
 ### Tailwind
 Configured via the official Vite plugin: `@tailwindcss/vite`. Global styles are in `src/index.css` (imports `tailwindcss`).
 
+### UI Components (shadcn/ui)
+- Component library: https://ui.shadcn.com/
+- Works well with Vite + Tailwind. This repo already has Tailwind v4 configured.
+- Quick start:
+  - Initialize shadcn in the project
+    ```bash
+    npx shadcn@latest init
+    ```
+  - Add components as needed (examples)
+    ```bash
+    npx shadcn@latest add button card navigation-menu
+    ```
+  - If using Tailwind v4, enable the animation plugin in `src/index.css` (optional but recommended by many shadcn components):
+    ```css
+    @plugin "tailwindcss-animate";
+    ```
+  - The `init` step will guide you to add CSS variables and tokens (colors, radii). Commit the changes it makes.
+
 ### Project structure
 ```
 src/
