@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Item, ItemContent, ItemTitle, ItemDescription } from '@/components/ui/item';
 
 interface Post {
   id: number;
@@ -6,19 +7,14 @@ interface Post {
   body: string;
 }
 
-function PostItem_old({ post }: { post: Post }) {
-  return (
-    <li key={post.id}>
-      {post.title} - {post.body}
-    </li>
-  );
-}
-
 function PostItem({ post }: { post: Post }) {
   return (
-    <>
-      {post.title} - {post.body}
-    </>
+    <Item variant="outline">
+      <ItemContent>
+        <ItemTitle>{post.title}</ItemTitle>
+        <ItemDescription>{post.body}</ItemDescription>
+      </ItemContent>
+    </Item>
   );
 }
 
@@ -52,11 +48,13 @@ export default function AsyncCodeExample() {
   }
 
   return (
-    <div>
-      <h1>Async Code Example</h1>
-      {posts.map((post) => (
-        <PostItem key={post.id} post={post} />
-      ))}
+    <div className="container mx-auto max-w-4xl p-4">
+      <h1 className="mb-6 text-3xl font-bold">Async Code Example</h1>
+      <div className="space-y-4">
+        {posts.map((post) => (
+          <PostItem key={post.id} post={post} />
+        ))}
+      </div>
     </div>
   );
 }
