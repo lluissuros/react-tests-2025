@@ -1,54 +1,58 @@
-# React + TypeScript + Vite
+## React + Vite + Tailwind + Router
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small React app scaffolded with Vite, styled with Tailwind, and using React Router for navigation. Includes a simple example page with a local counter and a Jotai-based counter.
 
-Currently, two official plugins are available:
+### Stack
+- React 19 + TypeScript
+- Vite 6
+- Tailwind (via `@tailwindcss/vite` v4)
+- React Router v7 (`react-router-dom`)
+- Jotai for small state examples
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Getting started
+1. Install dependencies
+   ```bash
+   npm install
+   ```
+2. Start dev server
+   ```bash
+   npm run dev
+   ```
 
-## Expanding the ESLint configuration
+### Available scripts
+- `npm run dev` – start Vite dev server
+- `npm run build` – type-check and build for production
+- `npm run preview` – preview the production build
+- `npm run lint` – run ESLint
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Routing
+The app uses a simple 3-tab navbar.
+- `/` → `Welcome` (includes classic counter and Jotai counter)
+- `/tab-2` → placeholder page
+- `/tab-3` → placeholder page
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Key files:
+- `src/main.tsx` – wraps the app with `BrowserRouter`
+- `src/App.tsx` – defines routes and renders the navbar
+- `src/components/Navbar.tsx` – responsive Tailwind navbar using `NavLink`
+- `src/components/Welcome.tsx` – example with counters and logos
+- `src/components/Placeholder.tsx` – generic placeholder for other tabs
+
+### Tailwind
+Configured via the official Vite plugin: `@tailwindcss/vite`. Global styles are in `src/index.css` (imports `tailwindcss`).
+
+### Project structure
+```
+src/
+  components/
+    Navbar.tsx
+    Welcome.tsx
+    Placeholder.tsx
+  App.tsx
+  main.tsx
+  index.css
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### Notes
+- Ready for adding more routes/pages (e.g., under `src/pages/`).
+- The navbar is mobile-friendly and highlights the active tab.
